@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    // Build Optimizations
+    "incremental": true, // Enables incremental compilation for faster builds
+    "skipLibCheck": true, // Skip type checking of declaration files for better performance
+    "removeComments": true, // Removes comments from output files to reduce size
+    "importHelpers": true, // Import helpers from tslib to reduce bundle size
+    "allowImportingTsExtensions": true,
+
+    // Type Checking
+    "strict": true, // Enable all strict type checking options
+    "noUnusedLocals": true, // Report errors on unused local variables
+    "noUnusedParameters": true, // Report errors on unused parameters
+    "noImplicitReturns": true, // Ensure all code paths return in functions
+    "noFallthroughCasesInSwitch": true, // Prevent accidental fallthrough in switch statements
+    "exactOptionalPropertyTypes": true, // More precise optional property types
+
+    // React Specific (if using React)
+    "jsx": "react-jsx", // Support JSX without importing React
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // Include necessary library files
+
+    // Module Resolution
+    "moduleResolution": "Node", // Use Node.js style module resolution
+    "baseUrl": "src/", // Base directory for module resolution
+    "esModuleInterop": true, // Better interop between different module systems
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules without exports
+
+    // Output Configuration
+    "target": "ESNext", // Latest ECMAScript features
+    "module": "ESNext", // Use modern module system
+    "outDir": "dist/", // Output directory for compiled files
+    "sourceMap": false, // Disable source maps in production
+
+    // Additional Safety
+    "forceConsistentCasingInFileNames": true, // Ensure consistent casing in imports
+    "isolatedModules": true, // Ensure each file can be safely transpiled
+    "resolveJsonModule": true, // Allow importing JSON files as modules
+    "pretty": true,
+    "useDefineForClassFields": true,
+    "allowJs": true,
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["src/Components/*"],
+      "@Pages/*": ["src/Pages/*"],
+      "@utils/*": ["src/utils/*"]
+    }
+  },
+  "include": [
+    "src/**/*", // Include all files in src
+    "tests/**/*", // Include all test files
+    "*.config.{js,ts}" // Include config files
+  ],
+  "exclude": [
+    "node_modules", // Exclude node_modules
+    "**/*.spec.ts", // Exclude test files
+    "dist", // Exclude output directory
+    "coverage", // Exclude test coverage
+    "**/*.test.ts", // Exclude test files
+    "**/__mocks__/*" // Exclude mock files
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "resolve": {
+    "alias": {
+      "@": "/src"
+    }
+  }
+}
