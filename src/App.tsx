@@ -1,15 +1,22 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Suspense, lazy } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+const DashBoard = lazy(() => import("./pages/DashBoard"));
+const NotFound = lazy(() => import("./error/NotFound"));
 
-import './App.css'
+const queryClient = new QueryClient();
 
-function App() {
-  
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<DashBoard />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  </QueryClientProvider>
+);
 
-  return (
-    <>
-        Click me
-       
-    </>
-  )
-}
-
-export default App
+export default App;
