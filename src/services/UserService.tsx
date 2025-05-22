@@ -2,7 +2,7 @@ import { User } from "../types/User";
 
 const API_URL: string = "https://jsonplaceholder.typicode.com";
 
-const fetchUsers = async (): Promise<User[]> => {
+export const fetchUsers = async (): Promise<User[]> => {
   try {
     const response = await fetch(`${API_URL}/users`);
     if (!response.ok) {
@@ -13,7 +13,9 @@ const fetchUsers = async (): Promise<User[]> => {
 
     return users?.map((user: User) => ({
       ...user,
-      role: ["Admin", "User", "Editor", "Viewer"][Math.floor(Math.random() * 4)],
+      role: ["Admin", "User", "Editor", "Viewer"][
+        Math.floor(Math.random() * 4)
+      ],
     }));
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -21,8 +23,18 @@ const fetchUsers = async (): Promise<User[]> => {
   }
 };
 
-const SERVICES = {
-  fetchUsers,
-};
+export const updateUser = async (user: User): Promise<User> => {
+  const response = await fetch(`${API_URL}/users/${user.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
 
-export default SERVICES;
+  if (!response.ok) {
+    throw new Error("Failed to update user");
+  }
+
+  return await response.json();
+};
