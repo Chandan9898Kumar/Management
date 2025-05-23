@@ -109,7 +109,9 @@ const UserManagement = () => {
       />
 
       {/* Pagination */}
-      <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+      <Pagination
+        pageCount={pageCount}
+        handlePageClick={handlePageClick} />
     </div>
   );
 };

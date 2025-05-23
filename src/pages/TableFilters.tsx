@@ -1,9 +1,9 @@
-import { memo } from "react";
 import { DebouncedInput } from "@/components/DebouncedInput";
-// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { UserRoles, FilterState } from "@/types/User";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/select";
+import { FilterState, UserRoles } from "@/types/User";
 import { motion } from "framer-motion";
-import { Search, Users, Tags } from "lucide-react";
+import { Search, Tags, Users } from "lucide-react";
+import { memo } from "react";
 
 interface TableFiltersProps {
   filterState: FilterState;
@@ -11,7 +11,7 @@ interface TableFiltersProps {
 }
 
 const TableFilters = ({filterState,handleFilterChange}: TableFiltersProps) => {
-console.log("TableFilters rendered");
+
   return (
     <motion.div
       className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 bg-muted/30 p-4 rounded-lg border border-border/50"
@@ -50,7 +50,7 @@ console.log("TableFilters rendered");
           <Tags className="h-4 w-4 text-muted-foreground" />
           Filter by Role
         </label>
-        {/* <Select
+        <Select
           value={filterState.role}
           onValueChange={(value) => handleFilterChange("role", value)}
         >
@@ -59,13 +59,13 @@ console.log("TableFilters rendered");
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All roles</SelectItem>
-            {UserRoles.map((role) => (
+            {UserRoles?.map((role) => (
               <SelectItem key={role} value={role}>
                 {role}
               </SelectItem>
             ))}
           </SelectContent>
-        </Select> */}
+        </Select>
       </div>
     </motion.div>
   );

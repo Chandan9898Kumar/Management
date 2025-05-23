@@ -101,8 +101,11 @@
 }
 
 .active-page a {
-  background-color: cornflowerblue !important;
-  color: var(--active-text-color) !important;
+  background-color: rgb(57, 58, 58) !important;
+  color: whitesmoke !important;
   border-color: var(--active-bg-color) !important;
   border-radius: 5px !important;
+  width: 40px;
+  align-content: center;
+  text-align: center;
 }
