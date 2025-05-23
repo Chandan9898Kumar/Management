@@ -99,3 +99,9 @@
     @apply bg-background text-foreground;
   } */
 }
+
+.active-page a {
+  background-color: cornflowerblue !important;
+  color: var(--active-text-color) !important;
+  border-color: var(--active-bg-color) !important;
+}

@@ -4,7 +4,7 @@ import useUsers from "@/hooks/useUsers";
 import { UserTable } from "@/pages/UserTable";
 import { FilterState, SortState, User } from "@/types/User";
 import { useCallback, useState } from "react";
-
+import Pagination from '../components/pagination'
 const TABLE_HEADERS: string[] = ["ID", "Name", "Email", "Role", "Actions"];
 const TABLE_SKELETONS: number = 5;
 
@@ -22,10 +22,7 @@ const UserManagement = () => {
 
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [sortState, setSortState] = useState<SortState>({
-    column: null,
-    direction: "asc",
-  });
+  const [sortState, setSortState] = useState<SortState>({column: null,direction: "asc"});
 
   const handleEdit = useCallback((user: User) => {
     setEditingUser(user);
@@ -68,6 +65,8 @@ const UserManagement = () => {
         sortState={sortState}
         handleEdit={handleEdit}
       />
+
+      <Pagination />
     </div>
   );
 };
