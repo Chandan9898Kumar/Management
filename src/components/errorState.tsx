@@ -1,4 +1,4 @@
-// import { Button } from "@/components/ui/button";
+import { Button } from "@/components/button";
 import { RefreshCw, AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -22,14 +22,14 @@ const  ErrorState =({ error, refetch }: ErrorStateProps)=> {
       <p className="mb-6 text-destructive/80">
         {error instanceof Error ? error.message : "An unknown error occurred"}
       </p>
-      {/* <Button 
+      <Button 
         onClick={() => refetch()} 
         variant="outline"
         className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors duration-300"
       >
         <RefreshCw className="mr-2 h-4 w-4" />
         Try Again
-      </Button> */}
+      </Button>
     </motion.div>
   );
 }

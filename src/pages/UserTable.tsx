@@ -1,15 +1,16 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../components/table";
-import { User, SortState } from "../types/User";
-import { ChevronDown, ChevronUp, Edit } from "lucide-react";
+import { Button } from "@/components/button";
 import { motion } from "framer-motion";
-import  Badge  from "../components/badge";
+import { ChevronDown, ChevronUp, Edit } from "lucide-react";
+import Badge from "../components/badge";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "../components/table";
+import { SortState, User } from "../types/User";
 interface UserTableProps {
   users: User[];
   handleSort: (column: keyof User) => void;
@@ -113,7 +114,7 @@ export function UserTable({
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  {/* <Button
+                  <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleEdit(user)}
@@ -121,7 +122,7 @@ export function UserTable({
                   >
                     <Edit className="h-4 w-4 mr-1" />
                     Edit
-                  </Button> */}
+                  </Button>
                 </TableCell>
               </motion.tr>
             ))
