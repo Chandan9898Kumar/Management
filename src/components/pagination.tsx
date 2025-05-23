@@ -1,9 +1,17 @@
 import ReactPaginate from "react-paginate";
 
-const Pagination = ({ pageCount = 5 }) => {
+interface PaginationProps {
+  pageCount: number;
+  handlePageClick: (event: { selected: number }) => void;
+}
+
+const Pagination = ({
+  pageCount = 5,
+  handlePageClick = () => {},
+}: PaginationProps) => {
   return (
     <ReactPaginate
-    //   onPageChange={handlePageClick}
+      onPageChange={handlePageClick}
       breakLabel="..."
       nextLabel="Next →"
       previousLabel="← Prev"
@@ -21,10 +29,6 @@ const Pagination = ({ pageCount = 5 }) => {
       nextLinkClassName="px-3 py-2 bg-white border hover:bg-gray-50 text-sm font-medium text-gray-500 hover:text-gray-700"
       disabledClassName="opacity-50 cursor-not-allowed"
       breakClassName="text-gray-500"
-      style={{
-        '--active-bg-color': '#2563eb',
-        '--active-text-color': 'white',
-      } as React.CSSProperties}
     />
   );
 };

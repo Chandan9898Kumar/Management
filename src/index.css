@@ -104,4 +104,5 @@
   background-color: cornflowerblue !important;
   color: var(--active-text-color) !important;
   border-color: var(--active-bg-color) !important;
+  border-radius: 5px !important;
 }

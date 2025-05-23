@@ -1,13 +1,18 @@
-import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/errorState";
+import LoadingState from "@/components/loadingState";
 import useUsers from "@/hooks/useUsers";
+import TableFilters from "@/pages/TableFilters";
 import { UserTable } from "@/pages/UserTable";
 import { FilterState, SortState, User } from "@/types/User";
-import { useCallback, useState } from "react";
-import Pagination from '../components/pagination'
+import { useCallback, useMemo, useState } from "react";
+import Pagination from "../components/pagination";
+
 const TABLE_HEADERS: string[] = ["ID", "Name", "Email", "Role", "Actions"];
 const TABLE_SKELETONS: number = 5;
-
+const ITEM_PER_PAGE = 5;
+interface PageClickEvent {
+  selected: number;
+}
 const UserManagement = () => {
   const {
     users,
@@ -22,7 +27,33 @@ const UserManagement = () => {
 
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [filterState, setFilterState] = useState<FilterState>({name: "",email: "",role: ""});
   const [sortState, setSortState] = useState<SortState>({column: null,direction: "asc"});
+  const [active, setActive] = useState(1);
+
+
+  const filteredUsers = useMemo(() => {
+    return filterUsers(users, filterState);
+  }, [users, filterState, filterUsers]);
+
+  const sortedUsers = useMemo(() => {
+    return sortUsers(filteredUsers, sortState);
+  }, [filteredUsers, sortState, sortUsers]);
+
+  const pageCount = useMemo(() => {
+    return Math.ceil(sortedUsers.length / ITEM_PER_PAGE);
+  }, [sortedUsers.length]);
+
+  const paginatedUsers = useMemo(() => {
+    return sortedUsers.slice(
+      active * ITEM_PER_PAGE - ITEM_PER_PAGE,
+      active * ITEM_PER_PAGE
+    );
+  }, [sortedUsers, active]);
+
+  const handlePageClick = useCallback((event: PageClickEvent) => {
+    setActive(event.selected + 1);
+  }, []);
 
   const handleEdit = useCallback((user: User) => {
     setEditingUser(user);
@@ -39,8 +70,12 @@ const UserManagement = () => {
     }));
   }, []);
 
-  const sortedUsers = sortUsers(users, sortState);
-
+  const handleFilterChange = useCallback((key: keyof FilterState, value: string) => {
+    setFilterState((prevState)=>({
+      ...prevState,
+      [key]: value,
+    }))
+  },[]);
 
   if (isLoading) {
     return (
@@ -55,18 +90,26 @@ const UserManagement = () => {
     return <ErrorState error={error} refetch={refetch} />;
   }
 
-  
+
   return (
     <div className="space-y-4">
+
+      {/* Filters */}
+      <TableFilters
+        filterState={filterState}
+        handleFilterChange={handleFilterChange}
+      />
+
       {/* User Table */}
       <UserTable
-        users={users}
+        users={paginatedUsers}
         handleSort={handleSort}
         sortState={sortState}
         handleEdit={handleEdit}
       />
 
-      <Pagination />
+      {/* Pagination */}
+      <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
     </div>
   );
 };
