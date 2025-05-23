@@ -39,13 +39,7 @@
     "useDefineForClassFields": true,
     "allowJs": true,
     "noEmit": true,
-    "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["src/Components/*"],
-      "@Pages/*": ["src/Pages/*"],
-      "@utils/*": ["src/utils/*"],
-      "@types/*": ["src/types/*"]
-    }
+    "paths": { "@/*": [ "./src/*" ] }
   },
   "include": [
     "src/**/*", // Include all files in src
