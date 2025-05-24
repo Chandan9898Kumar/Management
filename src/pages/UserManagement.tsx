@@ -100,7 +100,7 @@ const UserManagement = () => {
   if (error) {
     return <ErrorState error={error} refetch={refetch} />;
   }
-console.log(users,'users data')
+
   return (
     <div className="space-y-4">
       {/* Filters */}
