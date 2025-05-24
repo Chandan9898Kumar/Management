@@ -15,6 +15,7 @@ const useUsers = () => {
   const updateUserMutation = useMutation({
     mutationFn: updateUser,
     onMutate: async (updatedUser) => {
+      console.log("Optimistically updating user:", updatedUser);
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: ["users"] });
 

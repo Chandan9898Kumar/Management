@@ -1,11 +1,11 @@
-import { Suspense, lazy } from "react";
+import Loader from '@/components/CircularLoader/Loader';
 import ErrorState from "@/components/ui/errorState";
 import LoadingState from "@/components/ui/loadingState";
 import useUsers from "@/hooks/useUsers";
 import TableFilters from "@/pages/TableFilters";
 import { UserTable } from "@/pages/UserTable";
 import { FilterState, SortState, User } from "@/types/User";
-import { useCallback, useMemo, useState } from "react";
+import { Suspense, lazy, useCallback, useMemo, useState } from "react";
 import Pagination from "../components/ui/pagination";
 const EditUserModal = lazy(() => import("@/pages/EditUserModal"));
 
@@ -32,7 +32,7 @@ const UserManagement = () => {
   const [filterState, setFilterState] = useState<FilterState>({
     name: "",
     email: "",
-    role: "",
+    role: "all",
   });
   const [sortState, setSortState] = useState<SortState>({
     column: null,
@@ -100,7 +100,7 @@ const UserManagement = () => {
   if (error) {
     return <ErrorState error={error} refetch={refetch} />;
   }
-console.log(isEditModalOpen,'isEditModalOpen')
+
   return (
     <div className="space-y-4">
       {/* Filters */}
@@ -122,7 +122,7 @@ console.log(isEditModalOpen,'isEditModalOpen')
 
       {/* Edit User Modal */}
       {isEditModalOpen && (
-        <Suspense fallback="Loading ...">
+        <Suspense fallback={<Loader />}>
           <EditUserModal
             user={editingUser}
             open={isEditModalOpen}
