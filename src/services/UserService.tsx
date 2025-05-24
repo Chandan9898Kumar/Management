@@ -44,7 +44,7 @@ export const updateUser = async (user: User): Promise<User> => {
     throw new Error("Failed to update user");
   }
 
-  const updatedUserData = await response.json();
-  console.log("Updated user data:", updatedUserData);
-  return updatedUserData;
+  return await response.json();
+
+  
 };

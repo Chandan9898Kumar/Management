@@ -137,7 +137,7 @@ const EditUserModal = ({
       },
     },
   };
-  console.log(selectedRole, "selectedRole");
+  
   return (
     <Modal
       open={open}

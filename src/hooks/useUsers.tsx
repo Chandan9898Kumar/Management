@@ -19,7 +19,7 @@ const useUsers = () => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: ["users"] });
 
-      // Snapshot the previous value
+      // The purpose of this line is to take a "snapshot" of the current user data before making any optimistic updates. This snapshot is stored in the previousUsers variable, which is later returned as part of the context object and can be used to restore the original state if the server update fails.
       const previousUsers = queryClient.getQueryData<User[]>(["users"]);
 
       // Optimistically update to the new value
@@ -33,7 +33,9 @@ const useUsers = () => {
       return { previousUsers };
     },
     onError: (err, newUser, context) => {
-      // If the mutation fails, use the context returned from onMutate to roll back
+      // The context parameter in onError receives the object that was returned from onMutate
+
+      // If the mutation fails / if the server update fails, the onError function can access the previous state through context.previousUsers and restore it.
       if (context?.previousUsers) {
         queryClient.setQueryData<User[]>(["users"], context.previousUsers);
       }
@@ -44,6 +46,7 @@ const useUsers = () => {
       // });
     },
     onSuccess: (data) => {
+      
       // toast({
       //   title: "Success",
       //   description: `User ${data.name} was updated successfully!`,
