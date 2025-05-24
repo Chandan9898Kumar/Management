@@ -1,7 +1,7 @@
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, Edit } from "lucide-react";
-import Badge from "../components/badge";
+import Badge from "@/components/ui/badge";
 import {
     Table,
     TableBody,
@@ -9,8 +9,8 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "../components/table";
-import { SortState, User } from "../types/User";
+} from "@/components/ui/table";
+import { SortState, User } from "@/types/User";
 interface UserTableProps {
   users: User[];
   handleSort: (column: keyof User) => void;

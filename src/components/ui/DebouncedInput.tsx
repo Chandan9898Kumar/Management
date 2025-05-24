@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Input } from "@/components/input";
+import { Input } from "@/components/ui/input";
 
 interface DebouncedInputProps {
   value: string;

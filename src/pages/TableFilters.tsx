@@ -1,5 +1,5 @@
-import { DebouncedInput } from "@/components/DebouncedInput";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/select";
+import { DebouncedInput } from "@/components/ui/DebouncedInput";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FilterState, UserRoles } from "@/types/User";
 import { motion } from "framer-motion";
 import { Search, Tags, Users } from "lucide-react";

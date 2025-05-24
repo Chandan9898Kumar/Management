@@ -1,11 +1,13 @@
-import ErrorState from "@/components/errorState";
-import LoadingState from "@/components/loadingState";
+import { Suspense, lazy } from "react";
+import ErrorState from "@/components/ui/errorState";
+import LoadingState from "@/components/ui/loadingState";
 import useUsers from "@/hooks/useUsers";
 import TableFilters from "@/pages/TableFilters";
 import { UserTable } from "@/pages/UserTable";
 import { FilterState, SortState, User } from "@/types/User";
 import { useCallback, useMemo, useState } from "react";
-import Pagination from "../components/pagination";
+import Pagination from "../components/ui/pagination";
+const EditUserModal = lazy(() => import("@/pages/EditUserModal"));
 
 const TABLE_HEADERS: string[] = ["ID", "Name", "Email", "Role", "Actions"];
 const TABLE_SKELETONS: number = 5;
@@ -27,10 +29,16 @@ const UserManagement = () => {
 
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [filterState, setFilterState] = useState<FilterState>({name: "",email: "",role: ""});
-  const [sortState, setSortState] = useState<SortState>({column: null,direction: "asc"});
+  const [filterState, setFilterState] = useState<FilterState>({
+    name: "",
+    email: "",
+    role: "",
+  });
+  const [sortState, setSortState] = useState<SortState>({
+    column: null,
+    direction: "asc",
+  });
   const [active, setActive] = useState(1);
-
 
   const filteredUsers = useMemo(() => {
     return filterUsers(users, filterState);
@@ -70,12 +78,15 @@ const UserManagement = () => {
     }));
   }, []);
 
-  const handleFilterChange = useCallback((key: keyof FilterState, value: string) => {
-    setFilterState((prevState)=>({
-      ...prevState,
-      [key]: value,
-    }))
-  },[]);
+  const handleFilterChange = useCallback(
+    (key: keyof FilterState, value: string) => {
+      setFilterState((prevState) => ({
+        ...prevState,
+        [key]: value,
+      }));
+    },
+    []
+  );
 
   if (isLoading) {
     return (
@@ -89,11 +100,9 @@ const UserManagement = () => {
   if (error) {
     return <ErrorState error={error} refetch={refetch} />;
   }
-
-
+console.log(isEditModalOpen,'isEditModalOpen')
   return (
     <div className="space-y-4">
-
       {/* Filters */}
       <TableFilters
         filterState={filterState}
@@ -109,9 +118,20 @@ const UserManagement = () => {
       />
 
       {/* Pagination */}
-      <Pagination
-        pageCount={pageCount}
-        handlePageClick={handlePageClick} />
+      <Pagination pageCount={pageCount} handlePageClick={handlePageClick} />
+
+      {/* Edit User Modal */}
+      {isEditModalOpen && (
+        <Suspense fallback="Loading ...">
+          <EditUserModal
+            user={editingUser}
+            open={isEditModalOpen}
+            onOpenChange={setIsEditModalOpen}
+            onUpdate={updateUser}
+            isUpdating={isUpdating}
+          />
+        </Suspense>
+      )}
     </div>
   );
 };
