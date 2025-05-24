@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { UserFormValues, userSchema } from "@/schemas/UserSchema";
 import { User, UserRoles } from "@/types/User";
@@ -21,7 +21,7 @@ interface EditUserModalProps {
   user: User | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onUpdate: (user: User) => void;
+  onUpdate: (user: User) => Promise<boolean>;
   isUpdating: boolean;
 }
 
@@ -32,14 +32,13 @@ const EditUserModal = ({
   onUpdate,
   isUpdating,
 }: EditUserModalProps) => {
-
   const {
-    register,      // Connects form inputs to React Hook Form
-    handleSubmit,  // Creates a submission handler that validates data before calling your submit function
-    setValue,     // Programmatically sets values for form fields
-    reset,        // Resets form fields to specified values
+    register, // Connects form inputs to React Hook Form
+    handleSubmit, // Creates a submission handler that validates data before calling your submit function
+    setValue, // Programmatically sets values for form fields
+    reset, // Resets form fields to specified values
     formState: { errors }, // Contains validation errors
-    watch,      // Monitors form field values in real-time
+    watch, // Monitors form field values in real-time
   } = useForm<UserFormValues>({
     // Connects your Zod schema to React Hook Form for validation
     resolver: zodResolver(userSchema),
@@ -65,26 +64,28 @@ const EditUserModal = ({
     }
   }, [user, reset]);
 
-/**
- * The onSubmit function updates user information with the data provided and closes the form.
- * @param {UserFormValues} data - The `data` parameter in the `onSubmit` function is of type
- * `UserFormValues`. It likely contains information such as the user's name, email, and role that are
- * being updated in the `onUpdate` function.
- * @returns The `onSubmit` function is not explicitly returning anything. It is updating the user
- * information with the new data provided in the `UserFormValues` object and then changing the state of
- * `onOpen` to `false`.
- */
-  const onSubmit = (data: UserFormValues):void => {
+  /**
+   * The onSubmit function updates user information with the data provided and closes the form.
+   * @param {UserFormValues} data - The `data` parameter in the `onSubmit` function is of type
+   * `UserFormValues`. It likely contains information such as the user's name, email, and role that are
+   * being updated in the `onUpdate` function.
+   * @returns The `onSubmit` function is not explicitly returning anything. It is updating the user
+   * information with the new data provided in the `UserFormValues` object and then changing the state of
+   * `onOpen` to `false`.
+   */
+  const onSubmit = async (data: UserFormValues): Promise<void> => {
     if (!user) return;
 
-    onUpdate({
+    const success = await onUpdate({
       ...user,
       name: data.name,
       email: data.email,
       role: data.role,
     });
 
-    onOpenChange(false);
+    if (success) {
+      onOpenChange(false);
+    }
   };
 
   // Handle role change since it's not directly managed by react-hook-form. The shouldValidate: true option will trigger validation after setting the value.
@@ -137,7 +138,7 @@ const EditUserModal = ({
       },
     },
   };
-  
+
   return (
     <Modal
       open={open}

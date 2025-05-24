@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchUsers, updateUser } from "../services/UserService";
 import { FilterState, SortState, User } from "../types/User";
+import { toast } from "react-toastify";
 
 const useUsers = () => {
   const queryClient = useQueryClient();
@@ -15,7 +16,6 @@ const useUsers = () => {
   const updateUserMutation = useMutation({
     mutationFn: updateUser,
     onMutate: async (updatedUser) => {
-      console.log("Optimistically updating user:", updatedUser);
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: ["users"] });
 
@@ -39,18 +39,20 @@ const useUsers = () => {
       if (context?.previousUsers) {
         queryClient.setQueryData<User[]>(["users"], context.previousUsers);
       }
-      // toast({
-      //   title: "Error",
-      //   description: `Failed to update user: ${err instanceof Error ? err.message : "Unknown error"}`,
-      //   variant: "destructive",
-      // });
+
+      toast.error(
+        `Failed to update user: ${
+          err instanceof Error ? err.message : "Unknown error"
+        }`,
+        {
+          position: "bottom-right",
+        }
+      );
     },
     onSuccess: (data) => {
-      
-      // toast({
-      //   title: "Success",
-      //   description: `User ${data.name} was updated successfully!`,
-      // });
+      toast.success(`User ${data.name} was updated successfully!`, {
+        position: "bottom-right",
+      });
     },
     onSettled: () => {
       // Invalidate and refetch to ensure our local data is in sync with the server
@@ -99,7 +101,14 @@ const useUsers = () => {
     refetch,
     sortUsers,
     filterUsers,
-    updateUser: (user: User) => updateUserMutation.mutate(user),
+    updateUser: (user: User) => {
+      return new Promise<boolean>((resolve) => {
+        updateUserMutation.mutate(user, {
+          onSuccess: () => resolve(true),
+          onError: () => resolve(false),
+        });
+      });
+    },
     isUpdating: updateUserMutation.isPending,
   };
 };
