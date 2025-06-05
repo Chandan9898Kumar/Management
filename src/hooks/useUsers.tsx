@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchUsers, updateUser } from "../services/UserService";
 import { FilterState, SortState, User } from "../types/User";
@@ -60,7 +61,7 @@ const useUsers = () => {
     },
   });
 
-  const sortUsers = (users: User[], sortState: SortState): User[] => {
+  const sortUsers = useCallback((users: User[], sortState: SortState): User[] => {
     if (!sortState.column) return users;
 
     return [...users].sort((a, b) => {
@@ -75,24 +76,24 @@ const useUsers = () => {
       }
       return 0;
     });
-  };
+  }, []);
 
-  const filterUsers = (users: User[], filterState: FilterState): User[] => {
-    return users.filter((user) => {
-      const nameMatch = user.name
-        .toLowerCase()
-        .includes(filterState.name.toLowerCase());
-      const emailMatch = user.email
-        .toLowerCase()
-        .includes(filterState.email.toLowerCase());
-      const roleMatch =
-        filterState.role === "" ||
-        filterState.role === "all" ||
-        user.role === filterState.role;
+const filterUsers = useCallback((users: User[], filterState: FilterState): User[] => {
+  return users.filter((user) => {
+    const nameMatch = user.name
+      .toLowerCase()
+      .includes(filterState.name.toLowerCase());
+    const emailMatch = user.email
+      .toLowerCase()
+      .includes(filterState.email.toLowerCase());
+    const roleMatch =
+      filterState.role === "" ||
+      filterState.role === "all" ||
+      user.role === filterState.role;
 
-      return nameMatch && emailMatch && roleMatch;
-    });
-  };
+    return nameMatch && emailMatch && roleMatch;
+  });
+}, []);
 
   return {
     users,
