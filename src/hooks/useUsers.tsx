@@ -4,6 +4,56 @@ import { fetchUsers, updateUser } from "../services/UserService";
 import { FilterState, SortState, User } from "../types/User";
 import { toast } from "react-toastify";
 
+
+// Function moved outside the component
+// const sortUsers = (users: User[], sortState: SortState): User[] => {
+//   if (!sortState.column) return users;
+
+//   return [...users].sort((a, b) => {
+//     const valueA = a[sortState.column as keyof User] as string;
+//     const valueB = b[sortState.column as keyof User] as string;
+
+//     if (valueA < valueB) {
+//       return sortState.direction === "asc" ? -1 : 1;
+//     }
+//     if (valueA > valueB) {
+//       return sortState.direction === "asc" ? 1 : -1;
+//     }
+//     return 0;
+//   });
+// };
+
+// // Similarly, filterUsers could also be moved outside
+// const filterUsers = (users: User[], filterState: FilterState): User[] => {
+//   return users.filter((user) => {
+//     const nameMatch = user.name
+//       .toLowerCase()
+//       .includes(filterState.name.toLowerCase());
+//     const emailMatch = user.email
+//       .toLowerCase()
+//       .includes(filterState.email.toLowerCase());
+//     const roleMatch =
+//       filterState.role === "" ||
+//       filterState.role === "all" ||
+//       user.role === filterState.role;
+
+//     return nameMatch && emailMatch && roleMatch;
+//   });
+// };
+
+
+//                        With this above approach:
+
+// The sortUsers and filterUsers functions are defined outside the component, so they're only created once when the module loads
+
+// The functions maintain stable references across renders
+
+// You don't need useCallback since the functions aren't recreated on each render
+
+// When using these functions in a useMemo dependency array, they won't trigger unnecessary recalculations.
+
+// Cleaner dependency arrays: When using the function in useMemo or useEffect, you don't need to include the function in dependency arrays since it's not part of the component's scope.
+
 const useUsers = () => {
   const queryClient = useQueryClient();
 
