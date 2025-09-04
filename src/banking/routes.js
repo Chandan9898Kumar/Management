@@ -1,11 +1,12 @@
 const ROUTES = {
-  ACCOUNT_SELECT: "/account-select",
-  MANAGE_PAYEE: "/manage-payee",
-  PAYEE_SELECT: "/payee-select", 
-  TRANSFER_DETAILS: "/transfer-details",
-  REVIEW: "/review",
-  SUCCESS: "/success",
-  ERROR: "/error"
+  DASHBOARD: "/transfer/",
+  ACCOUNT_SELECT: "/transfer/",
+  MANAGE_PAYEE: "/transfer/manage-payee",
+  PAYEE_SELECT: "/transfer/payee-select", 
+  TRANSFER_DETAILS: "/transfer/transfer-details",
+  REVIEW: "/transfer/review",
+  SUCCESS: "/transfer/success",
+  ERROR: "/transfer/error"
 };
 
 export default ROUTES;

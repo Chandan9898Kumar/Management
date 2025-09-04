@@ -62,8 +62,7 @@ function ManagePayee() {
   const handleTransferToPayee = (payee) => {
     dispatch({ type: 'SET_PAYEE', payload: payee });
     dispatch({ type: 'SET_SKIP_PAYEE_SELECT', payload: true });
-    navigate(ROUTES.ACCOUNT_SELECT);
-    // announceToScreenReader(`Starting transfer to ${payee.name}`);
+    navigate('/transfer/');
   };
 
   if (loading) {
@@ -141,7 +140,7 @@ function ManagePayee() {
           padding: '20px 16px 30px 16px'
         }}>
           <button
-            onClick={() => navigate(ROUTES.ACCOUNT_SELECT)}
+            onClick={() => navigate('/transfer/')}
             style={{
               background: 'rgba(255,255,255,0.2)',
               border: 'none',
@@ -294,7 +293,7 @@ function ManagePayee() {
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
         <header style={{ display: 'flex', alignItems: 'center', marginBottom: '40px' }}>
           <button
-            onClick={() => navigate(ROUTES.ACCOUNT_SELECT)}
+            onClick={() => navigate('/transfer/')}
             style={{
               padding: '10px 20px',
               backgroundColor: '#6c757d',

@@ -23,12 +23,12 @@ function TransferError() {
 
   useEffect(() => {
     if (!isValidSession()) {
-      navigate(ROUTES.ACCOUNT_SELECT, { replace: true });
+      navigate('/transfer/', { replace: true });
       return;
     }
 
     const handlePopState = () => {
-      navigate(ROUTES.ACCOUNT_SELECT, { replace: true });
+      navigate('/transfer/', { replace: true });
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -39,7 +39,7 @@ function TransferError() {
   }, [navigate, state.sessionToken]);
 
   if (!isValidSession()) {
-    return <Navigate to={ROUTES.ACCOUNT_SELECT} replace />;
+    return <Navigate to="/transfer/" replace />;
   }
 
   const handleRetry = () => {
@@ -50,7 +50,7 @@ function TransferError() {
     sessionStorage.removeItem('transferSession');
     sessionStorage.removeItem('transferTimestamp');
     dispatch({ type: 'RESET' });
-    navigate(ROUTES.ACCOUNT_SELECT, { replace: true });
+    navigate('/transfer/', { replace: true });
   };
 
   const getErrorMessage = () => {

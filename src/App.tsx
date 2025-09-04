@@ -12,15 +12,15 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ToastContainer />
-    <BankingApp />
-    {/* <BrowserRouter>
+    <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<DashBoard />} />
+          <Route path="/transfer/*" element={<BankingApp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-    </BrowserRouter> */}
+    </BrowserRouter>
   </QueryClientProvider>
 );
 

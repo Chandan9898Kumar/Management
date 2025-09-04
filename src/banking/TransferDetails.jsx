@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useTransfer } from './TransferContext';
 import { useDeviceType } from './hooks/useDeviceType';
@@ -16,7 +16,7 @@ function TransferDetails() {
   const [errors, setErrors] = useState({});
 
   if (!canAccess('details')) {
-    return <Navigate to={ROUTES.ACCOUNT_SELECT} replace />;
+    return <Navigate to="/transfer/" replace />;
   }
 
   const validateForm = () => {

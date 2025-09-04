@@ -1,5 +1,7 @@
 import UserManagementTable from "./UserManagementTable";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 const DashBoard = () => {
   return (
     <div className="container mx-auto py-12 px-4">
@@ -18,6 +20,30 @@ const DashBoard = () => {
       >
         Advanced User Management System
       </motion.h1>
+      
+      {/* Navigation Links */}
+      <div className="flex justify-center gap-4 mb-8">
+        <Link 
+          to="/transfer" 
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+          replace
+        >
+          🏦 Banking Transfer
+        </Link>
+        <Link 
+          to="/" 
+          className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+        >
+          📈 Dashboard
+        </Link>
+        <Link 
+          to="/users" 
+          className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+        >
+          👥 Users
+        </Link>
+      </div>
+      
       <UserManagementTable />
     </div>
   );

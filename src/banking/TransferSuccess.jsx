@@ -28,13 +28,13 @@ function TransferSuccess() {
 
   useEffect(() => {
     if (!isValidSession()) {
-      navigate(ROUTES.ACCOUNT_SELECT, { replace: true });
+      navigate('/transfer/', { replace: true });
       return;
     }
 
     // Block back navigation
     const handlePopState = () => {
-      navigate(ROUTES.ACCOUNT_SELECT, { replace: true });
+      navigate('/transfer/', { replace: true });
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -53,15 +53,13 @@ function TransferSuccess() {
   }, [navigate, dispatch, state.sessionToken]);
 
   const handleNewTransfer = () => {
-    // Navigate first to prevent state conflicts
-    navigate(ROUTES.ACCOUNT_SELECT, { replace: true });
+    // Clean up session data
+    sessionStorage.removeItem("transferSession");
+    sessionStorage.removeItem("transferTimestamp");
+    dispatch({ type: "RESET" });
     
-    // Clean up after navigation
-    setTimeout(() => {
-      sessionStorage.removeItem("transferSession");
-      sessionStorage.removeItem("transferTimestamp");
-      dispatch({ type: "RESET" });
-    }, 0);
+    // Navigate to account selection page
+    navigate("/transfer/", { replace: true });
   };
 
   const getTransactionData = () => {
@@ -79,7 +77,7 @@ function TransferSuccess() {
   const transactionData = getTransactionData();
 
   if (!isValidSession()) {
-    return <Navigate to={ROUTES.ACCOUNT_SELECT} replace />;
+    return <Navigate to="/transfer/" replace />;
   }
 
   return (

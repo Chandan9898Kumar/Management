@@ -12,7 +12,7 @@ function ReviewTransfer() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   if (!canAccess('review')) {
-    return <Navigate to={ROUTES.ACCOUNT_SELECT} replace />;
+    return <Navigate to="/transfer/" replace />;
   }
 
   const processTransfer = async () => {

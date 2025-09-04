@@ -35,7 +35,7 @@ function PayeeSelect() {
   }, []);
 
   if (!canAccess('payee')) {
-    return <Navigate to={ROUTES.ACCOUNT_SELECT} replace />;
+    return <Navigate to="/transfer/" replace />;
   }
 
   const handleNext = () => {
@@ -128,7 +128,7 @@ function PayeeSelect() {
           position: "relative"
         }}>
           <button
-            onClick={() => navigate(ROUTES.ACCOUNT_SELECT)}
+            onClick={() => navigate('/transfer/')}
             style={{
               background: "rgba(255,255,255,0.2)",
               border: "none",
@@ -288,7 +288,7 @@ function PayeeSelect() {
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", marginBottom: "40px" }}>
             <button
-              onClick={() => navigate(ROUTES.ACCOUNT_SELECT)}
+              onClick={() => navigate('/transfer/')}
               style={{
                 padding: "10px 20px",
                 backgroundColor: "#6c757d",
