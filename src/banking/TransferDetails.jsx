@@ -102,7 +102,9 @@ function TransferDetails() {
             padding: "20px",
             borderRadius: "16px",
             marginBottom: "20px",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            contentVisibility: "auto",
+            containIntrinsicSize: "1px 300px"
           }}>
             <div style={{ marginBottom: "20px" }}>
               <label style={{ display: "block", marginBottom: "8px", fontSize: "16px", fontWeight: "600", color: "#333" }}>Amount *</label>
@@ -256,7 +258,9 @@ function TransferDetails() {
             borderRadius: "12px",
             padding: "40px",
             boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-            marginBottom: "30px"
+            marginBottom: "30px",
+            contentVisibility: "auto",
+            containIntrinsicSize: "1px 400px"
           }}>
             <div style={{
               display: "grid",

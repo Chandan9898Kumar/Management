@@ -89,7 +89,9 @@ function TransferError() {
             padding: "24px",
             marginBottom: "20px",
             boxShadow: "0 4px 12px rgba(220,53,69,0.15)",
-            border: "1px solid #f5c6cb"
+            border: "1px solid #f5c6cb",
+            contentVisibility: "auto",
+            containIntrinsicSize: "1px 200px"
           }}>
             <h3 style={{ margin: "0 0 20px 0", fontSize: "18px", color: "#721c24", textAlign: "center" }}>Transaction Details</h3>
             
@@ -204,7 +206,9 @@ function TransferError() {
           backgroundColor: "white",
           borderRadius: "12px",
           boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-          overflow: "hidden"
+          overflow: "hidden",
+          contentVisibility: "auto",
+          containIntrinsicSize: "1px 600px"
         }}>
           <header style={{
             backgroundColor: "#dc3545",

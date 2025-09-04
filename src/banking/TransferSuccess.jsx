@@ -90,7 +90,11 @@ function TransferSuccess() {
 
       <h2 style={styles.title}>Transfer Successful!</h2>
 
-      <section style={styles.detailsCard}>
+      <section style={{
+        ...styles.detailsCard,
+        contentVisibility: "auto",
+        containIntrinsicSize: "1px 300px"
+      }}>
         <h3 style={styles.detailsTitle}>Transaction Details</h3>
         <div style={styles.detailRow}>
           <strong>Transaction ID:</strong> 

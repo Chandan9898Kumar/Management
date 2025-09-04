@@ -173,7 +173,9 @@ function PayeeSelect() {
                 marginBottom: "12px",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
                 cursor: "pointer",
-                position: "relative"
+                position: "relative",
+                contentVisibility: "auto",
+                containIntrinsicSize: "1px 100px"
               }}
             >
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -319,7 +321,9 @@ function PayeeSelect() {
                   cursor: "pointer",
                   boxShadow: selectedId === payee.id ? "0 8px 25px rgba(0,123,255,0.15)" : "0 2px 10px rgba(0,0,0,0.08)",
                   transition: "all 0.3s ease",
-                  position: "relative"
+                  position: "relative",
+                  contentVisibility: "auto",
+                  containIntrinsicSize: "1px 200px"
                 }}
               >
                 <div style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>

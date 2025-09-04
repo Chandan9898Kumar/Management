@@ -259,7 +259,9 @@ function ManagePayee() {
                 borderRadius: '16px',
                 padding: '20px',
                 marginBottom: '16px',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                contentVisibility: 'auto',
+                containIntrinsicSize: '1px 140px'
               }}
             >
               <h3 style={{ margin: '0 0 8px 0', fontSize: '18px' }}>{payee.name}</h3>
@@ -405,7 +407,9 @@ function ManagePayee() {
                   border: '1px solid #e0e0e0',
                   borderRadius: '8px',
                   padding: '25px',
-                  backgroundColor: 'white'
+                  backgroundColor: 'white',
+                  contentVisibility: 'auto',
+                  containIntrinsicSize: '1px 160px'
                 }}
               >
                 <h3 style={{ margin: '0 0 10px 0', fontSize: '20px' }}>{payee.name}</h3>

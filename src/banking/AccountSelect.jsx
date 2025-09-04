@@ -194,6 +194,8 @@ function AccountSelect() {
               marginBottom: "16px",
               boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
               cursor: "pointer",
+              contentVisibility: "auto",
+              containIntrinsicSize: "1px 120px"
             }}
           >
             <div
@@ -364,6 +366,8 @@ function AccountSelect() {
                     selectedId === account.id ? "#f8f9fa" : "white",
                   cursor: "pointer",
                   transition: "background-color 0.2s",
+                  contentVisibility: "auto",
+                  containIntrinsicSize: "1px 80px"
                 }}
               >
                 <input

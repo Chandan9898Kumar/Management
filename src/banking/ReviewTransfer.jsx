@@ -75,7 +75,9 @@ function ReviewTransfer() {
             borderRadius: "16px",
             padding: "24px",
             marginBottom: "20px",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            contentVisibility: "auto",
+            containIntrinsicSize: "1px 400px"
           }}>
             <h3 style={{ margin: "0 0 20px 0", fontSize: "20px", color: "#333", textAlign: "center" }}>Transfer Summary</h3>
             
@@ -196,7 +198,9 @@ function ReviewTransfer() {
             backgroundColor: "white",
             borderRadius: "12px",
             padding: "40px",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.08)"
+            boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+            contentVisibility: "auto",
+            containIntrinsicSize: "1px 500px"
           }}>
             <h2 style={{ margin: "0 0 30px 0", fontSize: "24px", color: "#2c3e50" }}>Transaction Details</h2>
             
