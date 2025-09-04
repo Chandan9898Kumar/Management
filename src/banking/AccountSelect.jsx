@@ -148,14 +148,14 @@ function AccountSelect() {
   // Mobile Design - Card-based with full screen
   if (isMobile) {
     return (
-      <div
+      <main
         style={{
           backgroundColor: "#f8f9fa",
           minHeight: "100vh",
           padding: "20px 16px",
         }}
       >
-        <div
+        <header
           style={{
             backgroundColor: "#007bff",
             color: "white",
@@ -169,7 +169,7 @@ function AccountSelect() {
           <p style={{ margin: "8px 0 0 0", opacity: 0.9 }}>
             Choose account to transfer from
           </p>
-        </div>
+        </header>
 
         <HorizontalScroller
           items={accountFilters}
@@ -178,8 +178,9 @@ function AccountSelect() {
           title="Filter by Type"
         />
 
+        <section>
         {filteredAccounts.map((account) => (
-          <div
+          <article
             key={account.id}
             onClick={() => handleAccountSelect(account.id)}
             style={{
@@ -246,9 +247,11 @@ function AccountSelect() {
                 ₹{account.balance.toLocaleString()}
               </p>
             </div>
-          </div>
+          </article>
         ))}
+        </section>
 
+        <footer>
         <button
           onClick={handleNext}
           disabled={!selectedId}
@@ -267,7 +270,8 @@ function AccountSelect() {
         >
           Continue
         </button>
-      </div>
+        </footer>
+      </main>
     );
   }
 
@@ -281,7 +285,7 @@ function AccountSelect() {
       }}
     >
       {/* Sidebar */}
-      <div
+      <aside
         style={{
           width: "300px",
           backgroundColor: "#2c3e50",
@@ -292,7 +296,7 @@ function AccountSelect() {
         <h2 style={{ margin: "0 0 20px 0", fontSize: "28px" }}>
           Banking Portal
         </h2>
-        <div
+        <section
           style={{
             backgroundColor: "rgba(255,255,255,0.1)",
             padding: "20px",
@@ -305,11 +309,11 @@ function AccountSelect() {
           <p style={{ margin: 0, opacity: 0.8 }}>
             Select your account to begin the transfer process
           </p>
-        </div>
-      </div>
+        </section>
+      </aside>
 
       {/* Main Content */}
-      <div style={{ flex: 1, padding: "40px" }}>
+      <main style={{ flex: 1, padding: "40px" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <h1
             style={{ fontSize: "32px", marginBottom: "40px", color: "#2c3e50" }}
@@ -324,7 +328,7 @@ function AccountSelect() {
             title="Filter Accounts"
           />
 
-          <div
+          <section
             style={{
               backgroundColor: "white",
               borderRadius: "8px",
@@ -332,7 +336,7 @@ function AccountSelect() {
               overflow: "hidden",
             }}
           >
-            <div
+            <header
               style={{
                 backgroundColor: "#34495e",
                 color: "white",
@@ -342,10 +346,10 @@ function AccountSelect() {
               }}
             >
               Available Accounts
-            </div>
+            </header>
 
             {filteredAccounts.map((account, index) => (
-              <div
+              <article
                 key={account.id}
                 onClick={() => handleAccountSelect(account.id)}
                 style={{
@@ -407,11 +411,11 @@ function AccountSelect() {
                     Available Balance
                   </p>
                 </div>
-              </div>
+              </article>
             ))}
-          </div>
+          </section>
 
-          <div style={{ marginTop: "30px", textAlign: "right" }}>
+          <footer style={{ marginTop: "30px", textAlign: "right" }}>
             <button
               onClick={handleNext}
               disabled={!selectedId}
@@ -429,9 +433,9 @@ function AccountSelect() {
             >
               Next Step →
             </button>
-          </div>
+          </footer>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

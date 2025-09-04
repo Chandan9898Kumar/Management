@@ -83,14 +83,14 @@ function TransferSuccess() {
   }
 
   return (
-    <div style={{ ...styles.container, textAlign: "center" }}>
-      <div style={styles.successIcon}>
+    <main style={{ ...styles.container, textAlign: "center" }}>
+      <header style={styles.successIcon}>
         ✅
-      </div>
+      </header>
 
       <h2 style={styles.title}>Transfer Successful!</h2>
 
-      <div style={styles.detailsCard}>
+      <section style={styles.detailsCard}>
         <h3 style={styles.detailsTitle}>Transaction Details</h3>
         <div style={styles.detailRow}>
           <strong>Transaction ID:</strong> 
@@ -116,19 +116,21 @@ function TransferSuccess() {
           <strong>Date:</strong> 
           <span>{new Date().toLocaleString()}</span>
         </div>
-      </div>
+      </section>
 
-      <div style={styles.notificationCard}>
+      <aside style={styles.notificationCard}>
         <p>
           📧 A confirmation email has been sent to your registered email address.
         </p>
         <p>📱 SMS notification sent to your registered mobile number.</p>
-      </div>
+      </aside>
 
-      <button onClick={handleNewTransfer} style={styles.button}>
-        Make Another Transfer
-      </button>
-    </div>
+      <footer>
+        <button onClick={handleNewTransfer} style={styles.button}>
+          Make Another Transfer
+        </button>
+      </footer>
+    </main>
   );
 }
 

@@ -13,13 +13,13 @@ function AccountDashboard() {
   };
 
   return (
-    <div style={{ backgroundColor: isMobile ? '#f8f9fa' : '#ffffff', minHeight: '100vh' }}>
-      <div style={{
+    <main style={{ backgroundColor: isMobile ? '#f8f9fa' : '#ffffff', minHeight: '100vh' }}>
+      <header style={{
         padding: isMobile ? '16px' : '20px',
         borderBottom: '1px solid #e0e0e0',
         backgroundColor: 'white'
       }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ margin: 0, fontSize: isMobile ? '20px' : '24px' }}>Banking</h2>
           <button
             onClick={handleManagePayee}
@@ -36,10 +36,12 @@ function AccountDashboard() {
           >
             Manage Payees
           </button>
-        </div>
-      </div>
-      <AccountSelect />
-    </div>
+        </nav>
+      </header>
+      <section>
+        <AccountSelect />
+      </section>
+    </main>
   );
 }
 

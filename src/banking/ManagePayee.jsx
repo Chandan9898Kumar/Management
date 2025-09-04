@@ -135,7 +135,7 @@ function ManagePayee() {
   if (isMobile) {
     return (
       <main style={{ backgroundColor: '#f8f9fa', minHeight: '100vh', padding: '0' }}>
-        <div style={{
+        <header style={{
           background: 'linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%)',
           color: 'white',
           padding: '20px 16px 30px 16px'
@@ -157,9 +157,9 @@ function ManagePayee() {
           </button>
           <h1 style={{ margin: '0 0 8px 0', fontSize: '24px' }}>Manage Payees</h1>
           <p style={{ margin: 0, opacity: 0.9 }}>Add and manage your payees</p>
-        </div>
+        </header>
 
-        <div style={{ padding: '16px' }}>
+        <section style={{ padding: '16px' }}>
           <button
             onClick={() => setShowAddForm(!showAddForm)}
             style={{
@@ -178,7 +178,7 @@ function ManagePayee() {
           </button>
 
           {showAddForm && (
-            <div style={{
+            <form style={{
               backgroundColor: 'white',
               padding: '20px',
               borderRadius: '16px',
@@ -248,11 +248,11 @@ function ManagePayee() {
               >
                 {submitting ? 'Adding...' : 'Add Payee'}
               </button>
-            </div>
+            </form>
           )}
 
           {payees.map((payee) => (
-            <div
+            <article
               key={payee.id}
               style={{
                 backgroundColor: 'white',
@@ -280,9 +280,9 @@ function ManagePayee() {
               >
                 Transfer Amount
               </button>
-            </div>
+            </article>
           ))}
-        </div>
+        </section>
       </main>
     );
   }
@@ -290,7 +290,7 @@ function ManagePayee() {
   return (
     <main style={{ minHeight: '100vh', backgroundColor: '#f5f5f5', padding: '40px' }}>
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '40px' }}>
+        <header style={{ display: 'flex', alignItems: 'center', marginBottom: '40px' }}>
           <button
             onClick={() => navigate(ROUTES.ACCOUNT_SELECT)}
             style={{
@@ -306,9 +306,9 @@ function ManagePayee() {
             ← Back to Accounts
           </button>
           <h1 style={{ margin: 0, fontSize: '32px', color: '#2c3e50' }}>Manage Payees</h1>
-        </div>
+        </header>
         
-        <div style={{
+        <section style={{
           backgroundColor: 'white',
           borderRadius: '12px',
           padding: '40px',
@@ -399,7 +399,7 @@ function ManagePayee() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
             {payees.map((payee) => (
-              <div
+              <article
                 key={payee.id}
                 style={{
                   border: '1px solid #e0e0e0',
@@ -426,13 +426,13 @@ function ManagePayee() {
                 >
                   Transfer Amount
                 </button>
-              </div>
+              </article>
             ))}
           </div>
-        </div>
+        </section>
       </div>
     </main>
-  );
+  )
 }
 
 export default ManagePayee;

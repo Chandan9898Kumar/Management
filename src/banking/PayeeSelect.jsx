@@ -115,13 +115,13 @@ function PayeeSelect() {
   // Mobile Design - Swipe-friendly cards
   if (isMobile) {
     return (
-      <div style={{
+      <main style={{
         backgroundColor: "#f8f9fa",
         minHeight: "100vh",
         padding: "0"
       }}>
         {/* Header */}
-        <div style={{
+        <header style={{
           background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           color: "white",
           padding: "20px 16px 30px 16px",
@@ -143,10 +143,10 @@ function PayeeSelect() {
           </button>
           <h1 style={{ margin: "0 0 8px 0", fontSize: "24px" }}>Select Payee</h1>
           <p style={{ margin: 0, opacity: 0.9 }}>Step 2 of 3</p>
-        </div>
+        </header>
 
         {/* Selected Account Info */}
-        <div style={{
+        <aside style={{
           backgroundColor: "white",
           margin: "16px",
           padding: "16px",
@@ -157,12 +157,12 @@ function PayeeSelect() {
           <p style={{ margin: "0 0 4px 0", fontSize: "12px", color: "#666", textTransform: "uppercase" }}>FROM ACCOUNT</p>
           <h3 style={{ margin: "0 0 4px 0", fontSize: "16px", color: "#333" }}>{state.selectedAccount?.name}</h3>
           <p style={{ margin: 0, fontSize: "14px", color: "#666" }}>{state.selectedAccount?.number}</p>
-        </div>
+        </aside>
 
         {/* Payees List */}
-        <div style={{ padding: "0 16px" }}>
+        <section style={{ padding: "0 16px" }}>
           {payees.map(payee => (
-            <div
+            <article
               key={payee.id}
               onClick={() => setSelectedId(payee.id)}
               style={{
@@ -213,12 +213,12 @@ function PayeeSelect() {
                   </div>
                 )}
               </div>
-            </div>
+            </article>
           ))}
-        </div>
+        </section>
 
         {/* Bottom Button */}
-        <div style={{ padding: "20px 16px", paddingBottom: "40px" }}>
+        <footer style={{ padding: "20px 16px", paddingBottom: "40px" }}>
           <button
             onClick={handleNext}
             disabled={!selectedId}
@@ -236,8 +236,8 @@ function PayeeSelect() {
           >
             Continue to Transfer
           </button>
-        </div>
-      </div>
+        </footer>
+      </main>
     );
   }
 
@@ -249,7 +249,7 @@ function PayeeSelect() {
       backgroundColor: "#f8f9fa"
     }}>
       {/* Sidebar */}
-      <div style={{
+      <aside style={{
         width: "300px",
         backgroundColor: "#343a40",
         color: "white",
@@ -274,15 +274,15 @@ function PayeeSelect() {
         </div>
 
         {/* Selected Account */}
-        <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "20px", borderRadius: "8px" }}>
+        <section style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "20px", borderRadius: "8px" }}>
           <h4 style={{ margin: "0 0 10px 0", fontSize: "14px", opacity: 0.8 }}>SELECTED ACCOUNT</h4>
           <h3 style={{ margin: "0 0 5px 0", fontSize: "18px" }}>{state.selectedAccount?.name}</h3>
           <p style={{ margin: 0, opacity: 0.8 }}>{state.selectedAccount?.number}</p>
-        </div>
-      </div>
+        </section>
+      </aside>
 
       {/* Main Content */}
-      <div style={{ flex: 1, padding: "40px" }}>
+      <main style={{ flex: 1, padding: "40px" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <div style={{ display: "flex", alignItems: "center", marginBottom: "40px" }}>
             <button
@@ -308,7 +308,7 @@ function PayeeSelect() {
             gap: "20px"
           }}>
             {payees.map(payee => (
-              <div
+              <article
                 key={payee.id}
                 onClick={() => setSelectedId(payee.id)}
                 style={{
@@ -367,11 +367,11 @@ function PayeeSelect() {
                     ✓
                   </div>
                 )}
-              </div>
+              </article>
             ))}
           </div>
 
-          <div style={{ marginTop: "40px", textAlign: "right" }}>
+          <footer style={{ marginTop: "40px", textAlign: "right" }}>
             <button
               onClick={handleNext}
               disabled={!selectedId}
@@ -389,9 +389,9 @@ function PayeeSelect() {
             >
               Continue to Transfer →
             </button>
-          </div>
+          </footer>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

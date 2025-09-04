@@ -53,12 +53,12 @@ function ReviewTransfer() {
   // Mobile Design - Confirmation screen
   if (isMobile) {
     return (
-      <div style={{
+      <main style={{
         backgroundColor: "#f8f9fa",
         minHeight: "100vh",
         padding: "0"
       }}>
-        <div style={{
+        <header style={{
           background: "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)",
           color: "white",
           padding: "20px 16px 30px 16px",
@@ -67,10 +67,10 @@ function ReviewTransfer() {
           <div style={{ fontSize: "48px", marginBottom: "16px" }}>📝</div>
           <h1 style={{ margin: "0 0 8px 0", fontSize: "24px" }}>Review & Confirm</h1>
           <p style={{ margin: 0, opacity: 0.9 }}>Final step - Please verify all details</p>
-        </div>
+        </header>
 
-        <div style={{ padding: "20px 16px" }}>
-          <div style={{
+        <section style={{ padding: "20px 16px" }}>
+          <article style={{
             backgroundColor: "white",
             borderRadius: "16px",
             padding: "24px",
@@ -114,9 +114,9 @@ function ReviewTransfer() {
               <p style={{ margin: "0 0 4px 0", fontSize: "14px", color: "#666" }}>Total Amount</p>
               <p style={{ margin: 0, fontSize: "28px", fontWeight: "700", color: "#28a745" }}>₹{parseFloat(state.transferDetails?.amount || 0).toLocaleString()}</p>
             </div>
-          </div>
+          </article>
 
-          <div style={{
+          <aside style={{
             backgroundColor: "#fff3cd",
             border: "1px solid #ffeaa7",
             borderRadius: "12px",
@@ -130,9 +130,9 @@ function ReviewTransfer() {
                 <p style={{ margin: 0, fontSize: "14px", color: "#856404" }}>This transaction cannot be reversed once processed.</p>
               </div>
             </div>
-          </div>
+          </aside>
 
-          <div style={{ display: "flex", gap: "12px" }}>
+          <footer style={{ display: "flex", gap: "12px" }}>
             <button
               onClick={() => navigate(ROUTES.TRANSFER_DETAILS)}
               disabled={isProcessing}
@@ -168,31 +168,31 @@ function ReviewTransfer() {
             >
               {isProcessing ? "Processing..." : "Confirm Transfer"}
             </button>
-          </div>
-        </div>
-      </div>
+          </footer>
+        </section>
+      </main>
     );
   }
 
   // Web Design - Professional review layout
   return (
-    <div style={{
+    <main style={{
       minHeight: "100vh",
       backgroundColor: "#f5f5f5",
       padding: "40px"
     }}>
       <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "40px" }}>
+        <header style={{ textAlign: "center", marginBottom: "40px" }}>
           <h1 style={{ fontSize: "36px", color: "#2c3e50", marginBottom: "10px" }}>Review Transfer</h1>
           <p style={{ fontSize: "18px", color: "#7f8c8d" }}>Please verify all details before confirming</p>
-        </div>
+        </header>
 
         <div style={{
           display: "grid",
           gridTemplateColumns: "2fr 1fr",
           gap: "30px"
         }}>
-          <div style={{
+          <article style={{
             backgroundColor: "white",
             borderRadius: "12px",
             padding: "40px",
@@ -267,10 +267,10 @@ function ReviewTransfer() {
                 <p style={{ margin: 0, fontSize: "14px", color: "#856404" }}>Please review all details carefully. This transaction cannot be reversed once processed.</p>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div>
-            <div style={{
+          <aside>
+            <section style={{
               backgroundColor: "white",
               borderRadius: "12px",
               padding: "30px",
@@ -281,9 +281,9 @@ function ReviewTransfer() {
               <div style={{ textAlign: "center", padding: "20px", backgroundColor: "#f8f9fa", borderRadius: "8px" }}>
                 <p style={{ margin: 0, fontSize: "36px", fontWeight: "700", color: "#27ae60" }}>₹{parseFloat(state.transferDetails?.amount || 0).toLocaleString()}</p>
               </div>
-            </div>
+            </section>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+            <footer style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
               <button
                 onClick={() => navigate(ROUTES.TRANSFER_DETAILS)}
                 disabled={isProcessing}
@@ -318,11 +318,11 @@ function ReviewTransfer() {
               >
                 {isProcessing ? "Processing..." : "Confirm Transfer"}
               </button>
-            </div>
-          </div>
+            </footer>
+          </aside>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

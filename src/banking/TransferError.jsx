@@ -63,14 +63,14 @@ function TransferError() {
   // Mobile Design - Error screen with support options
   if (isMobile) {
     return (
-      <div style={{
+      <main style={{
         backgroundColor: "#fff5f5",
         minHeight: "100vh",
         padding: "0",
         display: "flex",
         flexDirection: "column"
       }}>
-        <div style={{
+        <header style={{
           backgroundColor: "#dc3545",
           color: "white",
           padding: "40px 16px",
@@ -80,10 +80,10 @@ function TransferError() {
           <div style={{ fontSize: "64px", marginBottom: "16px" }}>❌</div>
           <h1 style={{ margin: "0 0 8px 0", fontSize: "24px" }}>Transfer Failed</h1>
           <p style={{ margin: 0, opacity: 0.9 }}>Transaction could not be completed</p>
-        </div>
+        </header>
 
-        <div style={{ flex: 1, padding: "20px 16px" }}>
-          <div style={{
+        <section style={{ flex: 1, padding: "20px 16px" }}>
+          <article style={{
             backgroundColor: "white",
             borderRadius: "16px",
             padding: "24px",
@@ -115,9 +115,9 @@ function TransferError() {
                 <span style={{ fontWeight: "600", color: "#dc3545", textTransform: "uppercase" }}>Failed</span>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div style={{
+          <aside style={{
             backgroundColor: "#fff3cd",
             border: "1px solid #ffeaa7",
             borderRadius: "12px",
@@ -132,9 +132,9 @@ function TransferError() {
                 <p style={{ margin: 0, fontSize: "14px", color: "#856404" }}>Your account has not been debited. Please try again.</p>
               </div>
             </div>
-          </div>
+          </aside>
 
-          <div style={{
+          <aside style={{
             backgroundColor: "white",
             borderRadius: "12px",
             padding: "20px",
@@ -147,9 +147,9 @@ function TransferError() {
               <p style={{ margin: "0 0 16px 0", fontSize: "18px", fontWeight: "600", color: "#007bff" }}>1800-XXX-XXXX</p>
               <p style={{ margin: 0, fontSize: "14px", color: "#666" }}>💬 Live Chat available 24/7</p>
             </div>
-          </div>
+          </aside>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <footer style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             <button
               onClick={handleRetry}
               style={{
@@ -183,15 +183,15 @@ function TransferError() {
             >
               Start New Transfer
             </button>
-          </div>
-        </div>
-      </div>
+          </footer>
+        </section>
+      </main>
     );
   }
 
   // Web Design - Professional error page
   return (
-    <div style={{
+    <main style={{
       minHeight: "100vh",
       backgroundColor: "#f8f9fa",
       display: "flex",
@@ -200,13 +200,13 @@ function TransferError() {
       padding: "40px"
     }}>
       <div style={{ maxWidth: "800px", width: "100%" }}>
-        <div style={{
+        <article style={{
           backgroundColor: "white",
           borderRadius: "12px",
           boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
           overflow: "hidden"
         }}>
-          <div style={{
+          <header style={{
             backgroundColor: "#dc3545",
             color: "white",
             padding: "40px",
@@ -215,16 +215,16 @@ function TransferError() {
             <div style={{ fontSize: "80px", marginBottom: "20px" }}>❌</div>
             <h1 style={{ margin: "0 0 10px 0", fontSize: "36px" }}>Transfer Failed</h1>
             <p style={{ margin: 0, fontSize: "18px", opacity: 0.9 }}>We encountered an issue processing your transaction</p>
-          </div>
+          </header>
 
-          <div style={{ padding: "40px" }}>
+          <section style={{ padding: "40px" }}>
             <div style={{
               display: "grid",
               gridTemplateColumns: "2fr 1fr",
               gap: "30px",
               marginBottom: "30px"
             }}>
-              <div>
+              <article>
                 <h3 style={{ margin: "0 0 20px 0", fontSize: "20px", color: "#2c3e50" }}>Transaction Details</h3>
                 <div style={{
                   border: "1px solid #f5c6cb",
@@ -255,9 +255,9 @@ function TransferError() {
                     <p style={{ margin: 0, fontSize: "16px", color: "#721c24" }}>{state.transferDetails?.reference}</p>
                   </div>
                 </div>
-              </div>
+              </article>
 
-              <div>
+              <aside>
                 <div style={{
                   backgroundColor: "#fff3cd",
                   border: "1px solid #ffeaa7",
@@ -286,10 +286,10 @@ function TransferError() {
                   <p style={{ margin: "0 0 10px 0", fontSize: "18px", fontWeight: "600", color: "#0c5460" }}>📞 1800-XXX-XXXX</p>
                   <p style={{ margin: 0, fontSize: "14px", color: "#0c5460" }}>💬 Live Chat • Email Support</p>
                 </div>
-              </div>
+              </aside>
             </div>
 
-            <div style={{
+            <footer style={{
               display: "flex",
               justifyContent: "center",
               gap: "20px",
@@ -329,11 +329,11 @@ function TransferError() {
               >
                 🆕 Start New Transfer
               </button>
-            </div>
-          </div>
-        </div>
+            </footer>
+          </section>
+        </article>
       </div>
-    </div>
+    </main>
   );
 }
 

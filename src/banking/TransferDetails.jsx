@@ -46,12 +46,12 @@ function TransferDetails() {
   // Mobile Design - Form-focused layout
   if (isMobile) {
     return (
-      <div style={{
+      <main style={{
         backgroundColor: "#f8f9fa",
         minHeight: "100vh",
         padding: "0"
       }}>
-        <div style={{
+        <header style={{
           background: "linear-gradient(135deg, #28a745 0%, #20c997 100%)",
           color: "white",
           padding: "20px 16px 30px 16px"
@@ -72,10 +72,10 @@ function TransferDetails() {
           </button>
           <h1 style={{ margin: "0 0 8px 0", fontSize: "24px" }}>Transfer Amount</h1>
           <p style={{ margin: 0, opacity: 0.9 }}>Step 3 of 3</p>
-        </div>
+        </header>
 
-        <div style={{ padding: "16px" }}>
-          <div style={{
+        <section style={{ padding: "16px" }}>
+          <aside style={{
             backgroundColor: "white",
             padding: "20px",
             borderRadius: "16px",
@@ -95,9 +95,9 @@ function TransferDetails() {
               <span style={{ color: "#666" }}>Available:</span>
               <span style={{ fontWeight: "600", color: "#28a745" }}>₹{state.selectedAccount?.balance.toLocaleString()}</span>
             </div>
-          </div>
+          </aside>
 
-          <div style={{
+          <form style={{
             backgroundColor: "white",
             padding: "20px",
             borderRadius: "16px",
@@ -163,8 +163,9 @@ function TransferDetails() {
                 }}
               />
             </div>
-          </div>
+          </form>
 
+          <footer>
           <button
             onClick={handleNext}
             style={{
@@ -181,8 +182,9 @@ function TransferDetails() {
           >
             Review Transfer
           </button>
-        </div>
-      </div>
+          </footer>
+        </section>
+      </main>
     );
   }
 
@@ -193,7 +195,7 @@ function TransferDetails() {
       minHeight: "100vh",
       backgroundColor: "#f1f3f4"
     }}>
-      <div style={{
+      <aside style={{
         width: "300px",
         backgroundColor: "#1a73e8",
         color: "white",
@@ -216,7 +218,7 @@ function TransferDetails() {
           </div>
         </div>
 
-        <div style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "20px", borderRadius: "8px" }}>
+        <section style={{ backgroundColor: "rgba(255,255,255,0.1)", padding: "20px", borderRadius: "8px" }}>
           <h4 style={{ margin: "0 0 15px 0", fontSize: "14px", opacity: 0.8 }}>TRANSFER SUMMARY</h4>
           <div style={{ marginBottom: "10px" }}>
             <p style={{ margin: "0 0 5px 0", fontSize: "12px", opacity: 0.8 }}>FROM</p>
@@ -226,12 +228,12 @@ function TransferDetails() {
             <p style={{ margin: "0 0 5px 0", fontSize: "12px", opacity: 0.8 }}>TO</p>
             <p style={{ margin: 0, fontSize: "16px" }}>{state.selectedPayee?.name}</p>
           </div>
-        </div>
-      </div>
+        </section>
+      </aside>
 
-      <div style={{ flex: 1, padding: "40px" }}>
+      <main style={{ flex: 1, padding: "40px" }}>
         <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", marginBottom: "40px" }}>
+          <header style={{ display: "flex", alignItems: "center", marginBottom: "40px" }}>
             <button
               onClick={() => navigate(ROUTES.PAYEE_SELECT)}
               style={{
@@ -247,9 +249,9 @@ function TransferDetails() {
               ← Back
             </button>
             <h1 style={{ margin: 0, fontSize: "32px", color: "#202124" }}>Enter Transfer Details</h1>
-          </div>
+          </header>
 
-          <div style={{
+          <form style={{
             backgroundColor: "white",
             borderRadius: "12px",
             padding: "40px",
@@ -323,9 +325,9 @@ function TransferDetails() {
                 }}
               />
             </div>
-          </div>
+          </form>
 
-          <div style={{ textAlign: "right" }}>
+          <footer style={{ textAlign: "right" }}>
             <button
               onClick={handleNext}
               style={{
@@ -342,9 +344,9 @@ function TransferDetails() {
             >
               Review Transfer →
             </button>
-          </div>
+          </footer>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
