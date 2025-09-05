@@ -5,6 +5,7 @@ import AccountDashboard from './AccountDashboard';
 // import AccountSelect from './AccountSelect';
 import ManagePayee from './ManagePayee';
 import PayeeSelect from './PayeeSelect';
+import VirtualPayeeSelect from './components/VirtualPayeeSelect';
 import TransferDetails from './TransferDetails';
 import ReviewTransfer from './ReviewTransfer';
 import TransferSuccess from './TransferSuccess';
@@ -26,6 +27,7 @@ function BankingApp() {
             <Route path={ROUTES.ACCOUNT_SELECT} element={<AccountDashboard />} />
             <Route path={ROUTES.MANAGE_PAYEE} element={<ManagePayee />} />
             <Route path={ROUTES.PAYEE_SELECT} element={<PayeeSelect />} />
+            {/* <Route path={ROUTES.PAYEE_SELECT} element={<VirtualPayeeSelect />} /> */}
             <Route path={ROUTES.TRANSFER_DETAILS} element={<TransferDetails />} />
             <Route path={ROUTES.REVIEW} element={<ReviewTransfer />} />
             <Route path={ROUTES.SUCCESS} element={<TransferSuccess />} />
