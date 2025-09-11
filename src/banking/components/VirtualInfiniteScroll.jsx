@@ -2,16 +2,18 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 
 const VirtualInfiniteScroll = ({
   fetchData,
+  data = null, // Static data array
   renderItem,
   itemHeight = 100,
   containerHeight = 400,
   pageSize = 20,
   threshold = 5
 }) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(data || []);
   const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(!data);
   const [page, setPage] = useState(0);
+  const isStaticMode = data !== null;
   const containerRef = useRef();
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -52,10 +54,12 @@ const VirtualInfiniteScroll = ({
     };
   }, [scrollTop, itemHeight, containerHeight, items.length]);
 
-  // Load initial data
+  // Load initial data only for infinite scroll mode
   useEffect(() => {
-    loadMore(0);
-  }, []);
+    if (!isStaticMode) {
+      loadMore(0);
+    }
+  }, [isStaticMode]);
 
   // Show loading for initial load
   if (items.length === 0 && loading) {
@@ -79,12 +83,14 @@ const VirtualInfiniteScroll = ({
     const scrollTop = e.target.scrollTop;
     setScrollTop(scrollTop);
     
-    // Check if need to load more
-    const scrollBottom = scrollTop + containerHeight;
-    const shouldLoadMore = scrollBottom >= totalHeight - (threshold * itemHeight);
-    
-    if (shouldLoadMore && hasMore && !loading) {
-      loadMore(page + 1);
+    // Check if need to load more (only for infinite scroll mode)
+    if (!isStaticMode) {
+      const scrollBottom = scrollTop + containerHeight;
+      const shouldLoadMore = scrollBottom >= totalHeight - (threshold * itemHeight);
+      
+      if (shouldLoadMore && hasMore && !loading) {
+        loadMore(page + 1);
+      }
     }
   };
 
@@ -120,7 +126,7 @@ const VirtualInfiniteScroll = ({
       <div style={{ height: totalHeight, position: 'relative' }}>
         {visibleItems}
         
-        {loading && (
+        {!isStaticMode && loading && (
           <div
             style={{
               position: 'absolute',
@@ -138,7 +144,7 @@ const VirtualInfiniteScroll = ({
           </div>
         )}
         
-        {!hasMore && !loading && items.length > 0 && (
+        {!isStaticMode && !hasMore && !loading && items.length > 0 && (
           <div
             style={{
               position: 'absolute',

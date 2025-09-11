@@ -5,7 +5,7 @@ import AccountDashboard from './AccountDashboard';
 // import AccountSelect from './AccountSelect';
 import ManagePayee from './ManagePayee';
 import PayeeSelect from './PayeeSelect';
-import VirtualPayeeSelect from './components/VirtualPayeeSelect';
+// import VirtualPayeeSelect from './components/VirtualPayeeSelect';
 import TransferDetails from './TransferDetails';
 import ReviewTransfer from './ReviewTransfer';
 import TransferSuccess from './TransferSuccess';
